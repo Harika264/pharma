@@ -1,0 +1,74 @@
+[
+  {
+    "molecule": "Metformin",
+    "approved_for": ["Type 2 Diabetes Mellitus"],
+    "mechanism": "Decreases hepatic glucose production, decreases intestinal absorption of glucose, improves insulin sensitivity",
+    "repurpose_candidates": [
+      {
+        "indication": "Non-small cell lung cancer",
+        "rationale": "Activates AMPK pathway, inhibits mTOR signaling",
+        "clinical_evidence": "Phase 2 trials showing improved outcomes when combined with chemotherapy"
+      },
+      {
+        "indication": "Alzheimer's disease",
+        "rationale": "Reduces tau phosphorylation, improves cognitive function",
+        "clinical_evidence": "Observational studies show reduced dementia risk in diabetic patients"
+      },
+      {
+        "indication": "Polycystic ovary syndrome",
+        "rationale": "Improves insulin resistance, reduces androgens",
+        "clinical_evidence": "Multiple RCTs demonstrating efficacy in ovulation induction"
+      }
+    ],
+    "typical_dose": "500-2000 mg/day",
+    "safety_profile": "Generally well-tolerated, GI side effects common, rare lactic acidosis risk"
+  },
+  {
+    "molecule": "Aspirin",
+    "approved_for": ["Pain relief", "Fever reduction", "Inflammation", "Cardiovascular disease prevention"],
+    "mechanism": "Irreversible COX-1 and COX-2 inhibition, antiplatelet effects",
+    "repurpose_candidates": [
+      {
+        "indication": "Colorectal cancer prevention",
+        "rationale": "Inhibits prostaglandin synthesis, reduces inflammation-driven carcinogenesis",
+        "clinical_evidence": "Large cohort studies show 30-40% reduction in CRC risk with long-term use"
+      },
+      {
+        "indication": "Alzheimer's disease",
+        "rationale": "Anti-inflammatory effects, reduces amyloid plaque formation",
+        "clinical_evidence": "Mixed results in clinical trials, ongoing research"
+      },
+      {
+        "indication": "Pre-eclampsia prevention",
+        "rationale": "Improves placental blood flow, reduces vascular inflammation",
+        "clinical_evidence": "Recommended by WHO for high-risk pregnancies"
+      }
+    ],
+    "typical_dose": "75-325 mg/day (cardiovascular), 500-1000 mg (pain)",
+    "safety_profile": "GI bleeding risk, contraindicated in active ulcers"
+  },
+  {
+    "molecule": "Sildenafil",
+    "approved_for": ["Erectile dysfunction", "Pulmonary arterial hypertension"],
+    "mechanism": "Selective PDE5 inhibitor, increases cGMP, vasodilation",
+    "repurpose_candidates": [
+      {
+        "indication": "Raynaud's phenomenon",
+        "rationale": "Improves peripheral blood flow through vasodilation",
+        "clinical_evidence": "Small RCTs show reduction in frequency and severity of attacks"
+      },
+      {
+        "indication": "High-altitude pulmonary edema",
+        "rationale": "Reduces pulmonary vascular resistance",
+        "clinical_evidence": "Used off-label by mountaineers, limited formal trials"
+      },
+      {
+        "indication": "Fetal growth restriction",
+        "rationale": "Improves uteroplacental blood flow",
+        "clinical_evidence": "Phase 2 trials ongoing, preliminary positive results"
+      }
+    ],
+    "typical_dose": "25-100 mg (ED), 20 mg TID (PAH)",
+    "safety_profile": "Contraindicated with nitrates, visual disturbances possible"
+  }
+]

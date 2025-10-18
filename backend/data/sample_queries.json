@@ -1,0 +1,171 @@
+[
+  {
+    "name": "Metformin for Lung Cancer",
+    "query": {
+      "molecule": "Metformin",
+      "indications": ["Non-small cell lung cancer", "Adenocarcinoma"],
+      "countries": ["US", "IN", "CN"],
+      "sensitive": false,
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Clinical trials in progress",
+      "AMPK pathway activation mechanism",
+      "Market opportunity in oncology space",
+      "Generic drug with low IP risk"
+    ]
+  },
+  {
+    "name": "Aspirin for Colorectal Cancer Prevention",
+    "query": {
+      "molecule": "Aspirin",
+      "indications": ["Colorectal cancer prevention", "Adenoma prevention"],
+      "countries": ["US", "GB", "AU"],
+      "sensitive": false,
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Strong epidemiological evidence",
+      "Long-term safety data available",
+      "Large market size in preventive care",
+      "Minimal IP barriers"
+    ]
+  },
+  {
+    "name": "Sildenafil for Pulmonary Hypertension in India",
+    "query": {
+      "molecule": "Sildenafil",
+      "indications": ["Pulmonary arterial hypertension", "Right heart failure"],
+      "countries": ["IN", "BR", "CN"],
+      "sensitive": false,
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Already approved for PAH in developed markets",
+      "Emerging market opportunity",
+      "Established safety profile",
+      "Manufacturing capacity in India"
+    ]
+  },
+  {
+    "name": "Metformin for Alzheimer's with Internal Research",
+    "query": {
+      "molecule": "Metformin",
+      "indications": ["Alzheimer's disease", "Cognitive decline", "Dementia"],
+      "countries": ["US", "JP", "DE"],
+      "sensitive": true,
+      "internal_doc_ids": ["internal-neuro-2024-01", "internal-aging-2023-12"],
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Internal preclinical data supports hypothesis",
+      "Tau protein reduction mechanism",
+      "Aging population demographics favorable",
+      "High unmet medical need"
+    ]
+  },
+  {
+    "name": "Aspirin for Pre-eclampsia in Developing Markets",
+    "query": {
+      "molecule": "Aspirin",
+      "indications": ["Pre-eclampsia prevention", "Pregnancy hypertension"],
+      "countries": ["IN", "BR", "US"],
+      "sensitive": false,
+      "report_format": "excel"
+    },
+    "expected_highlights": [
+      "WHO recommendations support use",
+      "Low-cost intervention",
+      "High maternal mortality in target markets",
+      "Regulatory pathway clearer than novel drugs"
+    ]
+  },
+  {
+    "name": "Sildenafil for Raynaud's Phenomenon",
+    "query": {
+      "molecule": "Sildenafil",
+      "indications": ["Raynaud's phenomenon", "Peripheral vascular disease"],
+      "countries": ["US", "CA", "GB"],
+      "sensitive": false,
+      "report_format": "ppt"
+    },
+    "expected_highlights": [
+      "Small patient population but severe symptoms",
+      "Limited competing therapies",
+      "Existing safety data from ED and PAH indications",
+      "Potential for orphan drug designation"
+    ]
+  },
+  {
+    "name": "Metformin for PCOS - Comprehensive Analysis",
+    "query": {
+      "molecule": "Metformin",
+      "indications": ["Polycystic ovary syndrome", "Anovulation", "Insulin resistance"],
+      "countries": ["US", "IN", "BR", "AU"],
+      "sensitive": false,
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Already widely used off-label",
+      "Strong clinical evidence base",
+      "Large patient population (5-10% of women)",
+      "Clear mechanism of action"
+    ]
+  },
+  {
+    "name": "Aspirin for Alzheimer's Prevention",
+    "query": {
+      "molecule": "Aspirin",
+      "indications": ["Alzheimer's disease prevention", "Mild cognitive impairment"],
+      "countries": ["US", "JP", "DE", "GB"],
+      "sensitive": false,
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Anti-inflammatory mechanism relevant to neurodegeneration",
+      "Large aging population in target markets",
+      "Safety concerns in elderly need addressing",
+      "Mixed clinical trial results require careful analysis"
+    ]
+  },
+  {
+    "name": "Sildenafil for Fetal Growth Restriction - Sensitive",
+    "query": {
+      "molecule": "Sildenafil",
+      "indications": ["Fetal growth restriction", "Placental insufficiency"],
+      "countries": ["US", "GB", "AU"],
+      "sensitive": true,
+      "internal_doc_ids": ["internal-obs-2024-03"],
+      "report_format": "pdf"
+    },
+    "expected_highlights": [
+      "Internal safety data from preclinical studies",
+      "Pilot trials show promise",
+      "Ethical considerations in pregnancy trials",
+      "Regulatory pathway complex but navigable"
+    ]
+  },
+  {
+    "name": "Metformin Multi-Indication Opportunity Scan",
+    "query": {
+      "molecule": "Metformin",
+      "indications": [
+        "Cancer",
+        "Alzheimer's disease",
+        "PCOS",
+        "Aging/longevity",
+        "Cardiovascular disease"
+      ],
+      "countries": ["US", "IN", "CN", "BR", "DE"],
+      "sensitive": true,
+      "internal_doc_ids": ["internal-strategy-2024-01"],
+      "report_format": "ppt"
+    },
+    "expected_highlights": [
+      "Multiple repurposing opportunities identified",
+      "Generic status enables multiple simultaneous trials",
+      "Internal strategic priority for portfolio expansion",
+      "Risk diversification across multiple indications"
+    ]
+  }
+]

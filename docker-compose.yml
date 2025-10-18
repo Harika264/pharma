@@ -1,0 +1,162 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: pharma_postgres
+    environment:
+      POSTGRES_USER: pharma
+      POSTGRES_PASSWORD: pharma123
+      POSTGRES_DB: pharma_repurpose
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pharma"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: pharma_redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: pharma_minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  backend:
+    build: ./backend
+    container_name: pharma_backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://pharma:pharma123@postgres:5432/pharma_repurpose
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      S3_ENDPOINT_URL: http://minio:9000
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin123
+      S3_BUCKET_NAME: pharma-reports
+      USE_MINIO: "true"
+      JWT_SECRET_KEY: hackathon-secret-key-change-in-production
+      IQVIA_API_URL: http://mock-iqvia:8001
+      EXIM_API_URL: http://mock-exim:8002
+      USPTO_API_URL: http://mock-uspto:8003
+      CLINICAL_TRIALS_API_URL: http://mock-clinical:8004
+      WEB_SEARCH_API_URL: http://mock-web:8005
+      BOLT_LLM_ENDPOINT: https://api.bolt.new/v1/llm
+      BOLT_LLM_API_KEY: your-bolt-key
+      OPENAI_API_KEY: your-openai-key
+      ANTHROPIC_API_KEY: your-anthropic-key
+      ENVIRONMENT: development
+      LOG_LEVEL: INFO
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+
+  celery-worker:
+    build: ./backend
+    container_name: pharma_celery
+    command: celery -A app.tasks worker --loglevel=INFO --concurrency=4 --max-tasks-per-child=50
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://pharma:pharma123@postgres:5432/pharma_repurpose
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      S3_ENDPOINT_URL: http://minio:9000
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin123
+      S3_BUCKET_NAME: pharma-reports
+      USE_MINIO: "true"
+      IQVIA_API_URL: http://mock-iqvia:8001
+      EXIM_API_URL: http://mock-exim:8002
+      USPTO_API_URL: http://mock-uspto:8003
+      CLINICAL_TRIALS_API_URL: http://mock-clinical:8004
+      WEB_SEARCH_API_URL: http://mock-web:8005
+      BOLT_LLM_ENDPOINT: https://api.bolt.new/v1/llm
+      BOLT_LLM_API_KEY: your-bolt-key
+      OPENAI_API_KEY: your-openai-key
+      ANTHROPIC_API_KEY: your-anthropic-key
+      ENVIRONMENT: development
+      LOG_LEVEL: INFO
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+
+  mock-iqvia:
+    build: ./mocks
+    container_name: pharma_mock_iqvia
+    command: uvicorn iqvia_mock:app --host 0.0.0.0 --port 8001
+    ports:
+      - "8001:8001"
+
+  mock-exim:
+    build: ./mocks
+    container_name: pharma_mock_exim
+    command: uvicorn exim_mock:app --host 0.0.0.0 --port 8002
+    ports:
+      - "8002:8002"
+
+  mock-uspto:
+    build: ./mocks
+    container_name: pharma_mock_uspto
+    command: uvicorn uspto_mock:app --host 0.0.0.0 --port 8003
+    ports:
+      - "8003:8003"
+
+  mock-clinical:
+    build: ./mocks
+    container_name: pharma_mock_clinical
+    command: uvicorn clinical_mock:app --host 0.0.0.0 --port 8004
+    ports:
+      - "8004:8004"
+
+  mock-web:
+    build: ./mocks
+    container_name: pharma_mock_web
+    command: uvicorn web_mock:app --host 0.0.0.0 --port 8005
+    ports:
+      - "8005:8005"
+
+volumes:
+  postgres_data:
+  minio_data:
+
+networks:
+  default:
+    name: pharma_network
